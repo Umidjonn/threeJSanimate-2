@@ -25,7 +25,10 @@ scene.add(mesh)
 
 // Camera
 // const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1 ,100)
-const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100)
+const espectRatio = sizes.width / sizes.height;
+console.log(espectRatio);
+
+const camera = new THREE.OrthographicCamera(-1 * espectRatio, 1 * espectRatio, 1, -1, 0.1, 100)
 camera.position.x = 2
 camera.position.y = 2
 camera.position.z = 2
