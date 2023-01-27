@@ -1,6 +1,22 @@
 import './style.css'
 import * as THREE from 'three'
 
+
+
+/**
+ * Cursor
+ */
+
+const cursor = {
+    x:0,
+    y:0
+}
+window.addEventListener('mousemove',(event) =>{
+
+    cursor.x = event.clientX / sizes.width - 0.5
+    cursor.y = event.clientY / sizes.height - 0.5
+})
+
 /**
  * Base
  */
@@ -10,7 +26,7 @@ const canvas = document.querySelector('canvas.webgl')
 // Sizes
 const sizes = {
     width: 800,
-    height: 600
+    height: 700
 }
 
 // Scene
@@ -24,17 +40,15 @@ const mesh = new THREE.Mesh(
 scene.add(mesh)
 
 // Camera
-// const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1 ,100)
-const espectRatio = sizes.width / sizes.height;
-console.log(espectRatio);
+const camera = new THREE.PerspectiveCamera(100, sizes.width / sizes.height, 0.1 ,100)
+// const espectRatio = sizes.width / sizes.height;
+// console.log(espectRatio);
 
-const camera = new THREE.OrthographicCamera(-1 * espectRatio, 1 * espectRatio, 1, -1, 0.1, 100)
-camera.position.x = 2
-camera.position.y = 2
+// const camera = new THREE.OrthographicCamera(-1 * espectRatio, 1 * espectRatio, 1, -1, 0.1, 100)
+// camera.position.x = 2
+// camera.position.y = 2
 camera.position.z = 2
-
 camera.lookAt(mesh.position)
-console.log(camera.position.length())
 scene.add(camera)
 
 // Renderer
@@ -51,8 +65,14 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    mesh.rotation.y = elapsedTime;
-    // mesh.rotation.z = elapsedTime;
+    // mesh.rotation.y = elapsedTime;
+    
+    //Update camera
+    camera.position.x = cursor.x * 3
+    camera.position.y = cursor.y * 3
+
+    // camera.rotation.x = cursor.x
+    // camera.rotation.y = cursor.y
 
 
     // Render
