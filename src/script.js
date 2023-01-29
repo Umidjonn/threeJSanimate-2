@@ -14,7 +14,7 @@ const cursor = {
 window.addEventListener('mousemove',(event) =>{
 
     cursor.x = event.clientX / sizes.width - 0.5
-    cursor.y = event.clientY / sizes.height - 0.5
+    cursor.y = - (event.clientY / sizes.height - 0.5)
 })
 
 /**
@@ -70,6 +70,7 @@ const tick = () =>
     //Update camera
     camera.position.x = cursor.x * 3
     camera.position.y = cursor.y * 3
+    camera.lookAt(new THREE.Vector3())
 
     // camera.rotation.x = cursor.x
     // camera.rotation.y = cursor.y
