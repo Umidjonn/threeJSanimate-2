@@ -1,5 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
+import { cache } from 'webpack'
 
 
 
@@ -68,9 +69,10 @@ const tick = () =>
     // mesh.rotation.y = elapsedTime;
     
     //Update camera
-    camera.position.x = cursor.x * 10
-    camera.position.y = cursor.y * 10
-    camera.lookAt(new THREE.Vector3())
+    camera.position.x = Math.sin(cursor.x * Math.PI) * 2
+    camera.position.z = Math.cos(cursor.x * Math.PI) * 2
+    camera.position.y = cursor.y * 5 
+    camera.lookAt(mesh.position)
 
     // camera.rotation.x = cursor.x
     // camera.rotation.y = cursor.y
