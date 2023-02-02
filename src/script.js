@@ -1,7 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
-// import { cache } from 'webpack'
-
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
 
 
 /**
@@ -48,9 +47,15 @@ const camera = new THREE.PerspectiveCamera(100, sizes.width / sizes.height, 0.1 
 // const camera = new THREE.OrthographicCamera(-1 * espectRatio, 1 * espectRatio, 1, -1, 0.1, 100)
 // camera.position.x = 2
 // camera.position.y = 2
-camera.position.z = 2
+camera.position.z = 3
 camera.lookAt(mesh.position)
 scene.add(camera)
+
+//Controls
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
+// controls.target.y = -3
+// controls.update() 
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -66,17 +71,19 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    mesh.rotation.y = elapsedTime;
+    // mesh.rotation.y = elapsedTime;
     
     //Update camera
-    camera.position.x = Math.sin(cursor.x * Math.PI) * 2
-    camera.position.z = Math.cos(cursor.x * Math.PI) * 2
-    camera.position.y = cursor.y * 5 
-    camera.lookAt(mesh.position)
+    // camera.position.x = Math.sin(cursor.x * Math.PI) * 2
+    // camera.position.z = Math.cos(cursor.x * Math.PI) * 2
+    // camera.position.y = cursor.y * 5 
+    // camera.lookAt(mesh.position)
 
     // camera.rotation.x = cursor.x
     // camera.rotation.y = cursor.y
 
+    //Update controls
+    controls.update()
 
     // Render
     renderer.render(scene, camera)
