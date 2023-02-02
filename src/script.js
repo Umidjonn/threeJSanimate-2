@@ -1,6 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
-import { cache } from 'webpack'
+// import { cache } from 'webpack'
 
 
 
@@ -66,7 +66,7 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    // mesh.rotation.y = elapsedTime;
+    mesh.rotation.y = elapsedTime;
     
     //Update camera
     camera.position.x = Math.sin(cursor.x * Math.PI) * 2
